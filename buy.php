@@ -27,26 +27,26 @@ function makePost($url, $data){
     return $response;
 }
 
-echo('Create person.');
+// echo('Create person.');
 $person_url = $api_url . '/persons?api_token=' . $api_key;
-$person_data = array('name' => $_POST['lead_name'], 'phone' => $_POST['lead_phone']);
+$person_data = array('name' => $_POST['lead_name'], 'phone' => $_POST['lead_phone'], 'email' => $_POST['lead_email']);
 
 $person_response = makePost( $person_url , $person_data);
 
 if($person_response && $person_response->success){
     $person_id = $person_response->data->id;
-    echo('Succesfull creation of Person:' . $person_id .'.');
+    // echo('Succesfull creation of Person:' . $person_id .'.');
     
-    echo('Create deal.');
+    // echo('Create deal.');
     $deal_url = $api_url . '/deals?api_token=' . $api_key;    
-    $deal_data = array('title' => 'Оплата на 19.02' . $_POST['lead_phone'], 'person_id' => $person_id, 'stage_id' => $sales_new);
+    $deal_data = array('title' => 'Оплата на Эстонию' . $_POST['lead_phone'], 'person_id' => $person_id, 'stage_id' => $sales_new);
     
     $deal_response = makePost($deal_url, $deal_data);
 } else {
     var_dump($person_response);
 }
 
-echo ' Finish! Have a good day.';
+// echo ' Finish! Have a good day.';
 
 
 // Pipedrive
@@ -78,10 +78,11 @@ $mail=$_POST['lead_email'];
 $message=$_POST['lead_text'];
  
 $msg=" 
-Меня зовут $name и я хочу оплатить 19 февраля.
+Меня зовут $name и я хочу курс в Эстонии.
 
 Имя: $name
 Телефон: $phone
+Имейл: $mail
 "; 
  
   
@@ -97,7 +98,7 @@ mail("$adminemail", "$date $time Сообщение
  
 $f = fopen("message.txt", "a+"); 
  
-fwrite($f," \n $date $time Регистрация на 19.02 - $name"); 
+fwrite($f," \n $date $time Регистрация в Эстонию - $name"); 
  
 fwrite($f,"\n $msg "); 
  
