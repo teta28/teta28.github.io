@@ -1,50 +1,50 @@
 <? 
 
 // Pipedrive
-$api_url = 'https://api.pipedrive.com/v1';
-$api_key = '98f1219d17bb79464bf54ef12d4a4927dc426c78';
-$sales_new = '1';
+// $api_url = 'https://api.pipedrive.com/v1';
+// $api_key = '98f1219d17bb79464bf54ef12d4a4927dc426c78';
+// $sales_new = '1';
 
-function makePost($url, $data){
-    $ch = curl_init( $url );
-    curl_setopt( $ch, CURLOPT_POST, 1);
-    curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data));
-    curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
-    curl_setopt( $ch, CURLOPT_HEADER, 0);
-    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+// function makePost($url, $data){
+//     $ch = curl_init( $url );
+//     curl_setopt( $ch, CURLOPT_POST, 1);
+//     curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data));
+//     curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+//     curl_setopt( $ch, CURLOPT_HEADER, 0);
+//     curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
 
-    $response = json_decode(curl_exec( $ch ));
-    $err     = curl_errno( $ch );
-    $errmsg  = curl_error( $ch );
-    $header  = curl_getinfo( $ch );
-    curl_close( $ch );
+//     $response = json_decode(curl_exec( $ch ));
+//     $err     = curl_errno( $ch );
+//     $errmsg  = curl_error( $ch );
+//     $header  = curl_getinfo( $ch );
+//     curl_close( $ch );
 
-    if($err) {
-        echo ('Error: ' . $err . " - " . $errmsg);
-        return false;
-    }
+//     if($err) {
+//         echo ('Error: ' . $err . " - " . $errmsg);
+//         return false;
+//     }
 
-    return $response;
-}
+//     return $response;
+// }
 
-// echo('Create person.');
-$person_url = $api_url . '/persons?api_token=' . $api_key;
-$person_data = array('name' => $_POST['lead_name'], 'phone' => $_POST['lead_phone'], 'email' => $_POST['lead_email']);
+// // echo('Create person.');
+// $person_url = $api_url . '/persons?api_token=' . $api_key;
+// $person_data = array('name' => $_POST['lead_name'], 'phone' => $_POST['lead_phone'], 'email' => $_POST['lead_email']);
 
-$person_response = makePost( $person_url , $person_data);
+// $person_response = makePost( $person_url , $person_data);
 
-if($person_response && $person_response->success){
-    $person_id = $person_response->data->id;
-    // echo('Succesfull creation of Person:' . $person_id .'.');
+// if($person_response && $person_response->success){
+//     $person_id = $person_response->data->id;
+//     // echo('Succesfull creation of Person:' . $person_id .'.');
     
-    // echo('Create deal.');
-    $deal_url = $api_url . '/deals?api_token=' . $api_key;    
-    $deal_data = array('title' => 'Оплата на Эстонию' . $_POST['lead_phone'], 'person_id' => $person_id, 'stage_id' => $sales_new);
+//     // echo('Create deal.');
+//     $deal_url = $api_url . '/deals?api_token=' . $api_key;    
+//     $deal_data = array('title' => 'Оплата на Эстонию' . $_POST['lead_phone'], 'person_id' => $person_id, 'stage_id' => $sales_new);
     
-    $deal_response = makePost($deal_url, $deal_data);
-} else {
-    var_dump($person_response);
-}
+//     $deal_response = makePost($deal_url, $deal_data);
+// } else {
+//     var_dump($person_response);
+// }
 
 // echo ' Finish! Have a good day.';
 
