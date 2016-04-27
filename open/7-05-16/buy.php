@@ -78,7 +78,7 @@ $mail=$_POST['lead_email'];
 $message=$_POST['lead_text'];
  
 $msg=" 
-Меня зовут $name и я хочу курс в Эстонии.
+Меня зовут $name и я хочу открытую встречу в Эстонии.
 
 Имя: $name
 Телефон: $phone
@@ -98,7 +98,7 @@ mail("$adminemail", "$date $time Сообщение
  
 $f = fopen("message.txt", "a+"); 
  
-fwrite($f," \n $date $time Регистрация в Эстонию - $name"); 
+fwrite($f," \n $date $time Регистрация в Опэн-Эстонию - $name"); 
  
 fwrite($f,"\n $msg "); 
  
@@ -111,13 +111,13 @@ fclose($f);
 // Выводим сообщение пользователю   
  
 print "<script language='Javascript'><!-- 
-// function reload() {location = \"$backurl\"}; setTimeout('reload()', 0); 
+// function reload() {location = \"$backurl\"}; setTimeout('reload()', 2100); 
 //--></script> 
 
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
 <div style=\"background: url(images/shattered.png); padding-top: 200px; height:100%;\">
-<p style=\"font-family:'PT Sans'; font-size: 36px; font-weight:700; text-align:center;\">Спасибо! Мы сегодня с вами свяжемся</p>
+<p style=\"font-family:'PT Sans'; font-size: 36px; font-weight:700; text-align:center;\">Спасибо! Вы успешно зарегистрировались на открытую встречу</p>
 </div>";  
 exit; 
  
