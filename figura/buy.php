@@ -110,7 +110,7 @@ fclose($f);
  
 // Выводим сообщение пользователю   
  
-print "<script language='Javascript'>function reload() {location = \"$backurl\"}; setTimeout('reload()', 2100); 
+print "<script language='Javascript'>function reload() {location = \"$backurl\"}; setTimeout('reload()', 5100); 
 </script> 
 
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
